@@ -2,6 +2,8 @@ package dxc;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RaceWithCommentary {
 
@@ -10,7 +12,6 @@ public class RaceWithCommentary {
         RaceCar[] cars = RaceCar.getDefaultCars();
         int finishLine = 100;
         int totalRaces = 1;
-
 
         for (int raceNumber = 1; raceNumber <= totalRaces; raceNumber++) {
             System.out.println("=== Rennen " + raceNumber + " startet ===");
@@ -50,20 +51,25 @@ public class RaceWithCommentary {
                     currentLeader = leader;
                 }
 
-                // Kommentator: Wagen weit zurück (10+ Meter hinter Führendem)
+                // Kommentator: Wagen weit zurück bündeln
+                List<String> farBehindCars = new ArrayList<>();
                 for (RaceCar car : cars) {
                     if (car != leader) {
                         int distance = leader.position - car.position;
                         boolean wasFarBehind = farBehindStatus.get(car);
 
                         if (distance >= 10 && !wasFarBehind) {
-                            System.out.println("Kommentator: " + car.name + " fällt weit zurück! (" + distance + " Meter)");
-                            farBehindStatus.put(car, true); // markiere als weit zurück
+                            farBehindCars.add(car.name + " (" + car.position + " m)");
+                            farBehindStatus.put(car, true);
                         } else if (distance < 10 && wasFarBehind) {
-                            // Wagen hat wieder aufgeschlossen -> Status zurücksetzen
+                            // Status zurücksetzen, Wagen hat wieder aufgeholt
                             farBehindStatus.put(car, false);
                         }
                     }
+                }
+
+                if (!farBehindCars.isEmpty()) {
+                    System.out.println("Kommentator: Folgende Wagen fallen weit zurück: " + String.join(", ", farBehindCars));
                 }
 
                 // Prüfen, ob jemand das Ziel erreicht hat
