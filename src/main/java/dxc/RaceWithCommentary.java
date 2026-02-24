@@ -13,7 +13,6 @@ public class RaceWithCommentary {
         int finishLine = 100;
         int totalRaces = 1;
 
-
         for (int raceNumber = 1; raceNumber <= totalRaces; raceNumber++) {
             System.out.println("=== Rennen " + raceNumber + " startet ===");
 
@@ -46,7 +45,7 @@ public class RaceWithCommentary {
                     }
                 }
 
-                // Kommentator: Führungswechsel
+                // Führungswechsel
                 if (leader != currentLeader) {
                     System.out.println("Kommentator: " + leader.name + " übernimmt die Spitze mit " + leader.position + " Metern!");
                     currentLeader = leader;
@@ -55,7 +54,7 @@ public class RaceWithCommentary {
                 // Immer ausgeben, wie weit der Erste ist
                 System.out.println("Kommentator: Der Führende ist " + leader.name + " bei " + leader.position + " Metern.");
 
-                // Kommentator: Wagen weit zurück bündeln
+                // Wagen weit zurück bündeln
                 List<String> farBehindCars = new ArrayList<>();
                 for (RaceCar car : cars) {
                     if (car != leader) {
@@ -81,6 +80,10 @@ public class RaceWithCommentary {
                         System.out.println("Kommentator: " + car.name + " hat das Ziel erreicht und gewinnt das Rennen!");
                         car.wins++;
                         raceFinished = true;
+
+                        // Personalisierte Glückwunschnachricht
+                        System.out.println("Herzlichen Glückwunsch " + car.name + "! Du hast das Rennen gewonnen! Super Leistung!");
+
                         break;
                     }
                 }
