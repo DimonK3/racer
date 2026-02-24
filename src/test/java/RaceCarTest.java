@@ -1,5 +1,6 @@
 import dxc.Race;
 import dxc.RaceCar;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -8,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class RaceCarTest {
 
     @Test
+    @DisplayName("Should throw IllegalArgumentException when Dice Count is below 1")
     public void shouldThrowErrorWhenDiceCountBelow1() {
 
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
@@ -21,6 +23,7 @@ public class RaceCarTest {
     }
 
     @Test
+    @DisplayName("Should throw IllegalArgumentException when Dice Sides are below 1")
     public void shouldThrowErrorWhenDiceSidesBelow1() {
 
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
@@ -33,6 +36,7 @@ public class RaceCarTest {
         assertTrue(actualMessage.contains(expectedMessage));
     }
     @Test
+    @DisplayName("Should win race atleast once in a thousand runs")
     public void shouldWinAtLeastOnceInThousandRuns() {
 
         Race race = new Race(100);
