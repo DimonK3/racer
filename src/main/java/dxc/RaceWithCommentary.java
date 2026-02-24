@@ -1,6 +1,5 @@
 package dxc;
 
-import java.util.Random;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,7 +11,6 @@ public class RaceWithCommentary {
         int finishLine = 100;
         int totalRaces = 1;
 
-        Random random = new Random();
 
         for (int raceNumber = 1; raceNumber <= totalRaces; raceNumber++) {
             System.out.println("=== Rennen " + raceNumber + " startet ===");
