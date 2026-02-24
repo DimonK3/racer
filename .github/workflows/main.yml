@@ -80,9 +80,6 @@ jobs:
         with:
           languages: java
 
-      - name: Build for CodeQL
-        run: mvn clean compile
-
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
 
