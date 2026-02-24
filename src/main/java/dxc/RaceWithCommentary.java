@@ -13,6 +13,7 @@ public class RaceWithCommentary {
         int finishLine = 100;
         int totalRaces = 1;
 
+
         for (int raceNumber = 1; raceNumber <= totalRaces; raceNumber++) {
             System.out.println("=== Rennen " + raceNumber + " startet ===");
 
@@ -51,6 +52,9 @@ public class RaceWithCommentary {
                     currentLeader = leader;
                 }
 
+                // Immer ausgeben, wie weit der Erste ist
+                System.out.println("Kommentator: Der Führende ist " + leader.name + " bei " + leader.position + " Metern.");
+
                 // Kommentator: Wagen weit zurück bündeln
                 List<String> farBehindCars = new ArrayList<>();
                 for (RaceCar car : cars) {
@@ -62,7 +66,6 @@ public class RaceWithCommentary {
                             farBehindCars.add(car.name + " (" + car.position + " m)");
                             farBehindStatus.put(car, true);
                         } else if (distance < 10 && wasFarBehind) {
-                            // Status zurücksetzen, Wagen hat wieder aufgeholt
                             farBehindStatus.put(car, false);
                         }
                     }
