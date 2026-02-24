@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class RaceCar {
 
-    String name;
+    public String name;
     int diceCount;
     int diceSides;
     int bonus;
@@ -37,5 +37,23 @@ public class RaceCar {
 
     public void reset() {
         position = 0;
+    }
+
+    // Statische Methode: liefert alle 12 Wagen
+    public static RaceCar[] getDefaultCars() {
+        return new RaceCar[] {
+                new RaceCar("Alpha",   1, 6, 0),
+                new RaceCar("Bravo",   2, 6, 0),
+                new RaceCar("Charlie", 1, 8, 1),
+                new RaceCar("Delta",   3, 4, -1),
+                new RaceCar("Echo",    2, 8, 0),
+                new RaceCar("Foxtrot", 1, 12, -2),
+                new RaceCar("Golf",    4, 3, 0),
+                new RaceCar("Hotel",   2, 10, -1),
+                new RaceCar("India",   3, 6, -2),
+                new RaceCar("Juliet",  1, 20, -5),
+                new RaceCar("Kilo",    5, 2, 0),
+                new RaceCar("Lima",    2, 12, -3)
+        };
     }
 }

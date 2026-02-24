@@ -37,14 +37,19 @@ public class RaceCarTest {
 
         Race race = new Race(100);
 
-        RaceCar car = new RaceCar("car", 2, 6, 0);
-        race.addCar(car);
+        RaceCar[] cars = RaceCar.getDefaultCars();
+
+        for (RaceCar car : cars) {
+            race.addCar(car);
+        }
 
         race.simulate(1000);
 
-        String expectedMessage = "Das Auto hat in 1000 Rennen kein einziges Mal gewonnen";
-        String actualMessage = car.wins > 0 ? "OK" : expectedMessage;
+        for (RaceCar car : cars) {
+            String expectedMessage = car.name + " hat in 1000 Rennen kein einziges Mal gewonnen";
+            String actualMessage = car.wins > 0 ? "OK" : expectedMessage;
 
-        assertTrue(actualMessage.contains("OK"), expectedMessage);
+            assertTrue(actualMessage.contains("OK"), expectedMessage);
+        }
     }
 }
