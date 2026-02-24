@@ -83,9 +83,15 @@ public class RaceWithCommentary {
 
                         // Personalisierte Glückwunschnachricht
                         System.out.println("Herzlichen Glückwunsch " + car.name + "! Du hast das Rennen gewonnen! Super Leistung!");
-
                         break;
                     }
+                }
+
+                // Kurze Pause, damit man die Kommentare live miterleben kann
+                try {
+                    Thread.sleep(2000); // 2 Sekunden Pause
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
                 }
             }
         }
