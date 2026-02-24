@@ -24,8 +24,8 @@ jobs:
 
       - name: Check for merge conflicts
         run: |
-          git fetch origin main
-          git merge --no-commit --no-ff origin/main || exit 1
+          git fetch origin master
+          git merge --no-commit --no-ff origin/master || exit 1
           git merge --abort
 
   # -------------------------
