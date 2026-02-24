@@ -10,7 +10,7 @@ public class RaceCar {
     int bonus;
 
     int position = 0;
-    int wins = 0;
+    public int wins = 0;
 
     Random random = new Random();
 

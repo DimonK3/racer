@@ -1,3 +1,4 @@
+import dxc.Race;
 import dxc.RaceCar;
 import org.junit.jupiter.api.Test;
 
@@ -30,5 +31,20 @@ public class RaceCarTest {
         String actualMessage = exception.getMessage();
 
         assertTrue(actualMessage.contains(expectedMessage));
+    }
+    @Test
+    public void shouldWinAtLeastOnceInThousandRuns() {
+
+        Race race = new Race(100);
+
+        RaceCar car = new RaceCar("car", 2, 6, 0);
+        race.addCar(car);
+
+        race.simulate(1000);
+
+        String expectedMessage = "Das Auto hat in 1000 Rennen kein einziges Mal gewonnen";
+        String actualMessage = car.wins > 0 ? "OK" : expectedMessage;
+
+        assertTrue(actualMessage.contains("OK"), expectedMessage);
     }
 }
