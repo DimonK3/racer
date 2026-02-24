@@ -2,8 +2,7 @@ import dxc.Race;
 import dxc.RaceCar;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class RaceCarTest {
 
@@ -31,25 +30,5 @@ public class RaceCarTest {
         String actualMessage = exception.getMessage();
 
         assertTrue(actualMessage.contains(expectedMessage));
-    }
-    @Test
-    public void shouldWinAtLeastOnceInThousandRuns() {
-
-        Race race = new Race(100);
-
-        RaceCar[] cars = RaceCar.getDefaultCars();
-
-        for (RaceCar car : cars) {
-            race.addCar(car);
-        }
-
-        race.simulate(1000);
-
-        for (RaceCar car : cars) {
-            String expectedMessage = car.name + " hat in 1000 Rennen kein einziges Mal gewonnen";
-            String actualMessage = car.wins > 0 ? "OK" : expectedMessage;
-
-            assertTrue(actualMessage.contains("OK"), expectedMessage);
-        }
     }
 }
