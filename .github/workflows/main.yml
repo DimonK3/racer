@@ -55,7 +55,7 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: '17'
+          java-version: '24'
 
       - name: Build with Maven
         run: mvn clean compile
@@ -75,28 +75,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup CodeQL
-        uses: github/codeql-action/setup@v3
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
         with:
-          tools-version: latest
+          languages: java
 
-      - name: Create CodeQL database (build Java project)
-        run: |
-          codeql database create codeql-db \
-            --language=java \
-            --source-root=. \
-            --command="mvn clean compile"
+      - name: Build for CodeQL
+        run: mvn clean compile
 
-      - name: Analyze CodeQL database
-        run: |
-          codeql database analyze codeql-db \
-            --format=sarifv2 \
-            --output=results.sarif
-
-      - name: Upload SARIF results
-        uses: github/codeql-action/upload-sarif@v3
-        with:
-          sarif_file: results.sarif
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
 
   # -------------------------
   # Tests (JUnit)
@@ -117,7 +105,7 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: '17'
+          java-version: '24'
 
       - name: Run Tests
         run: mvn test
