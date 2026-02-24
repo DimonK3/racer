@@ -12,6 +12,10 @@ jobs:
   # -------------------------
   merge-conflict-check:
     runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+      actions: read
+      contents: read
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -30,6 +34,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     needs: merge-conflict-check
+    permissions:
+      security-events: write
+      actions: read
+      contents: read
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -75,6 +83,8 @@ jobs:
   # Tests (JUnit)
   test:
     permissions:
+      security-events: write
+      actions: read
       contents: read
     runs-on: ubuntu-latest
     needs: codeql
