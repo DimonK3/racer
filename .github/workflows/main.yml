@@ -25,8 +25,17 @@ jobs:
       - name: Check for merge conflicts
         run: |
           git fetch origin master
-          git merge --no-commit --no-ff origin/master || exit 1
+          # Attempt to merge; if it fails, there's a conflict → exit 1
+          if ! git merge --no-commit --no-ff origin/master; then
+          echo "Merge conflict detected"
+          exit 1
+          fi
+          # If the merge succeeded and actually created a merge state, abort it
+          if [ -f .git/MERGE_HEAD ]; then
           git merge --abort
+          fi
+          # If we get here, there were no conflicts (and the merge was either performed or was a no‑op)
+          echo "No merge conflicts"
 
   # -------------------------
   # Build (Maven)
