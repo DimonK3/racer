@@ -38,27 +38,27 @@ public class RaceWithCommentary {
                 }
 
                 // Führenden bestimmen
-                RaceCar leader = cars[0];
+                RaceCar leaderLastLap = cars[0];
                 for (RaceCar car : cars) {
-                    if (car.position > leader.position) {
-                        leader = car;
+                    if (car.position > leaderLastLap.position) {
+                        leaderLastLap = car;
                     }
                 }
 
                 // Führungswechsel
-                if (leader != currentLeader) {
-                    System.out.println("Kommentator: " + leader.name + " übernimmt die Spitze mit " + leader.position + " Metern!");
-                    currentLeader = leader;
+                if (leaderLastLap != currentLeader) {
+                    System.out.println("Kommentator: " + leaderLastLap.name + " übernimmt die Spitze mit " + leaderLastLap.position + " Metern!");
+                    currentLeader = leaderLastLap;
                 }
 
                 // Immer ausgeben, wie weit der Erste ist
-                System.out.println("Kommentator: Der Führende ist " + leader.name + " bei " + leader.position + " Metern.");
+                System.out.println("Kommentator: Der Führende ist " + leaderLastLap.name + " bei " + leaderLastLap.position + " Metern.");
 
                 // Wagen weit zurück bündeln
                 List<String> farBehindCars = new ArrayList<>();
                 for (RaceCar car : cars) {
-                    if (car != leader) {
-                        int distance = leader.position - car.position;
+                    if (car != leaderLastLap) {
+                        int distance = leaderLastLap.position - car.position;
                         boolean wasFarBehind = farBehindStatus.get(car);
 
                         if (distance >= 10 && !wasFarBehind) {
